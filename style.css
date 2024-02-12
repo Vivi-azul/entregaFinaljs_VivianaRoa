@@ -1,3 +1,9 @@
+.poppins-regular {
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
 .producto-imagen {
     max-width: 100px;
     max-height: 100px;
@@ -14,4 +20,7 @@
 .imagen {
     width: 100%;
     height: auto;
+}
+h2 {
+  color: blue;
 }

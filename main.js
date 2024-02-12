@@ -75,18 +75,18 @@ function agregarProducto(nombre, precio, cantidad) {
         nombre,
         precio: parseFloat(precio),
         cantidad: parseInt(cantidad),
-        imagen: "" // Añade la imagen del producto si la tienes disponible
     };
 
-    bodega.push(nuevoProducto);
-    guardarBodegaEnLocalStorage(bodega); // Actualiza los datos en el almacenamiento local
-    renderizarProductos(bodega); // Renderizar la lista con el nuevo producto añadido
+    disponibles.push(nuevoProducto);
+    guardarBodegaEnLocalStorage(bodega); 
+    renderizarProductos(bodega);
 }
 
 const renderizarProductos = (productos) => {
-    listaProductosContainer.innerHTML = "";
+    listaProductosContainer.innerHTML = `
+        <h2 class=poppins-regular>Productos Disponibles</h2>`;
 
-    productos.forEach((producto) => {
+    disponibles.forEach((producto) => {
         const div = document.createElement("div");
         div.classList.add("producto");
              div.innerHTML = `
@@ -96,7 +96,9 @@ const renderizarProductos = (productos) => {
             <img class="producto-imagen" src="${producto.imagen}" alt="${producto.nombre}">
         `;
         listaProductosContainer.appendChild(div);
+        
     });
+    
 };  
 
 renderizarProductos(bodega);
