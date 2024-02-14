@@ -51,13 +51,19 @@ boton.addEventListener("click", function(event) {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            const nombre = document.getElementById("nombre").value;
-            const precio = document.getElementById("precio").value;
-            const cantidad = document.getElementById("cantidad").value;
+            const nombre = document.createElement( "nombre").value;
+            const precio = document.createElement("precio").value;
+            const cantidad = document.createElement("cantidad").value;
             agregarProducto(nombre, precio, cantidad);
         }
     });
 });
+
+function agregarProducto(nombre, precio, cantidad) {
+    console.log("Nombre:", nombre);
+    console.log("Precio:", precio);
+    console.log("Cantidad:", cantidad);
+}
 
 
 function obtenerBodegaDesdeLocalStorage() {
