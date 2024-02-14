@@ -8,7 +8,8 @@ const disponibles = [
     { id: 7, nombre: "conservas", precio: 1100, cantidad: 4, imagen: "https://santaisabel.vtexassets.com/arquivos/ids/197665/Durazno-en-cubitos-caja-abre-facil-200-g.jpg?v=637891751893270000" },
 ];
 
-const bodega = obtenerBodegaDesdeLocalStorage();
+// const bodega = obtenerBodegaDesdeLocalStorage();
+localStorage.setItem("disponibles", JSON.stringify(disponibles));
 
 const listaProductosContainer = document.getElementById("listaProductos");
 
@@ -51,11 +52,12 @@ boton.addEventListener("click", function(event) {
         cancelButtonText: "Cancelar"
     }).then((result) => {
         if (result.isConfirmed) {
-            const nombre = document.createElement( "nombre").value;
-            const precio = document.createElement("precio").value;
-            const cantidad = document.createElement("cantidad").value;
+            const nombre = document.getElementById("nombre").value;
+            const precio = document.getElementById("precio").value;
+            const cantidad = document.getElementById("cantidad").value;
             agregarProducto(nombre, precio, cantidad);
         }
+        formulario.reset();
     });
 });
 
@@ -67,25 +69,25 @@ function agregarProducto(nombre, precio, cantidad) {
 
 
 function obtenerBodegaDesdeLocalStorage() {
-    const datosGuardados = localStorage.getItem('bodega');
+    const datosGuardados = localStorage.getItem('disponibles');
     return datosGuardados ? JSON.parse(datosGuardados) : [];
 }
 
-function guardarBodegaEnLocalStorage(bodega) {
-    localStorage.setItem("bodega", JSON.stringify(bodega));
+function guardarBodegaEnLocalStorage(disponibles) {
+    localStorage.setItem("disponibles", JSON.stringify(disponibles));
 }
 
 function agregarProducto(nombre, precio, cantidad) {
     const nuevoProducto = {
-        id: bodega.length + 1,
+        id: disponibles.length + 1,
         nombre,
         precio: parseFloat(precio),
         cantidad: parseInt(cantidad),
     };
 
     disponibles.push(nuevoProducto);
-    guardarBodegaEnLocalStorage(bodega); 
-    renderizarProductos(bodega);
+    guardarBodegaEnLocalStorage(disponibles); 
+    renderizarProductos(disponibles);
 }
 
 const renderizarProductos = (productos) => {
@@ -107,6 +109,6 @@ const renderizarProductos = (productos) => {
     
 };  
 
-renderizarProductos(bodega);
+renderizarProductos(disponibles);
 
 
